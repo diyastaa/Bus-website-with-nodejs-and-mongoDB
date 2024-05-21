@@ -1,0 +1,297 @@
+/* Gaya untuk tampilan berita */
+.headline {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    /* Membuatnya menjadi tengan secara horizontal */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.headline:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#news-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.news-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.news-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.news-item p {
+    margin-bottom: 8px;
+}
+
+.news-item img {
+    border-radius: 8px;
+}
+
+.news-item a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.news-item a:hover {
+    text-decoration: underline;
+}
+
+/* Additional styles for better readability */
+.section-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.project-info h1,
+.project-info h2,
+.project-info p {
+    margin-bottom: 10px;
+}
+
+/*Filter*/
+.filter-box {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.filter-box input[type="text"] {
+    padding: 5px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 150px;
+}
+
+.filter-box button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.filter-box button:hover {
+    background-color: #0056b3;
+}
+
+.not-found {
+    text-align: center;
+    color: red;
+    margin-top: 20px;
+}
+
+.filter-box {
+    margin-bottom: 20px;
+}
+
+.filter-box input[type="text"] {
+    padding: 8px;
+    width: 200px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filter-box button {
+    padding: 8px 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filter-icon {
+    margin-right: 5px;
+}
+
+/*Checkbox*/
+.checkbox-container {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .checkbox-custom {
+    display: none; 
+  }
+  
+  .checkbox-custom + .checkbox-label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+  }
+  
+  .checkbox-custom + .checkbox-label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  .checkbox-custom:checked + .checkbox-label:before {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .checkbox-custom:checked + .checkbox-label:after {
+    content: '\2713'; /* Checkmark character */
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .checkbox-label {
+    vertical-align: middle;
+  }
+
+  /* sortir */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-content .checkbox-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .dropdown-content .checkbox-label:hover {
+    background-color: #f0f0f0;
+  }
+  
+
+/* Button */
+.button-85 {
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-85:before {
+    content: "";
+    background: linear-gradient(
+      45deg,
+      #ff0000,
+      #ff7300,
+      #fffb00,
+      #48ff00,
+      #00ffd5,
+      #002bff,
+      #7a00ff,
+      #ff00c8,
+      #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+  }
+  
+  @keyframes glowing-button-85 {
+    0% {
+      background-position: 0 0;
+    }
+    50% {
+      background-position: 400% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  
+  .button-85:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }

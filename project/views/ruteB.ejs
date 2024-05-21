@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cari Alternatif Rute Busway Tercepat</title>
+    <link rel="stylesheet" href="css/ruteB.css">
+    
+</head>
+<body>
+
+    <br> <br><%- include('layout/navbar.ejs') %>
+    <br>
+
+    <h1 style="text-align: center;">Cari Rute</h1>
+    <div class="container">
+        <input style="width: 100%;" type="text" id="search" oninput="searchTable()" placeholder="Type to search...">
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>Route ID</th>
+                    <th>Agency ID</th>
+                    <th>Route Short Name</th>
+                    <th>Route Long Name</th>
+                    <th>Route Description</th>
+                    <th>Route Type</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable">
+                <% tjData.forEach(data => { %>
+                    <tr>
+                        <td><%= data.route_id %></td>
+                        <td><%= data.agency_id %></td>
+                        <td><%= data.route_short_name %></td>
+                        <td><%= data.route_long_name %></td>
+                        <td><%= data.route_desc %></td>
+                        <td><%= data.route_type %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    
+    <%- include('layout/footer.ejs') %>
+<script>
+   
+            function searchTable() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("search");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("dataTable");
+                tr = table.getElementsByTagName("tr");
+    
+                // Iterasi melalui setiap baris tabel
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td");
+                    var found = false;
+                    for (var j = 0; j < td.length; j++) {
+                        var cell = td[j];
+                        if (cell) {
+                            txtValue = cell.textContent || cell.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                found = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (found) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+    
+                if (filter === "") {
+                    table.style.display = "none";// Sembunyikan tabel jika tidak ada pencarian
+                } else {
+                    table.style.display = ""; 
+                }
+            }
+    
+            document.addEventListener("DOMContentLoaded", function() {
+                var table = document.getElementById("dataTable");
+                table.style.display = "none";
+            });
+            src="js/ruteB.js"
+        </script>
+
+</body>
+</html>

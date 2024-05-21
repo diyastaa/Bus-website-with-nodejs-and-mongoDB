@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://fonts.googleapis.com/css?family=Arima+Madurai"
+    rel="stylesheet">
+<link rel="stylesheet" href="css/berita.css">
+<link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+<link
+    rel="stylesheet"
+    href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script
+    src="https://kit.fontawesome.com/your-fontawesome-kit.js"
+    crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+
+    <%- include('layout/navbar.ejs') %>
+
+
+    <!-- Filter Box -->
+    <div class="filter-box">
+        <input type="text" id="filter-input" placeholder="Cari berita...">
+
+        <!--Search-->
+        <button class="button-85" id="search-button"><i class="fas fa-search"></i> Search</button>
+        <div class="dropdown">
+            <button class="button-85" onclick="toggleDropdown()" class="dropbtn"><i class="fas fa-filter filter-icon"></i>Filter</button>
+            <div id="filterDropdown" class="dropdown-content">
+              <input type="checkbox" id="newest-filter" class="checkbox-custom" onchange="applyFilters()">
+              <label for="newest-filter" class="checkbox-label">Terbaru</label><br>
+              <input type="checkbox" id="oldest-filter" class="checkbox-custom" onchange="applyFilters()">
+              <label for="oldest-filter" class="checkbox-label">Terlama</label><br>
+              <input type="checkbox" id="trending-filter" class="checkbox-custom" onchange="applyFilters()">
+              <label for="trending-filter" class="checkbox-label">Trending</label><br>
+            </div>
+          </div>
+        
+        <!-- Sortir -->
+        <div class="dropdown">
+            <button class="button-85">Sortir <i class="fa fa-caret-down"></i></button>
+            <div class="dropdown-content">
+                <a onclick="sortNews('newest')">Terbaru</a>
+                <a onclick="sortNews('oldest')">Terlama</a>
+                <a onclick="sortNews('trending')">Trending</a>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Berita -->
+        <div id="news-list">
+            <div id="content-wrapper">
+                <div id="main">
+                    <div id="headlines">
+                        <div id="main-headline">
+                            <h3 src="${news.trending}">title<i class="fas fa-fire text-danger"></i>' : ''}</h3>
+                            <img src="${news.image}" alt="${news.title}" style="width: 300px; height: auto;">
+                            <p src="${news.date}"><i class="far fa-calendar-alt"></i> Tanggal: </p> <!-- Ikon "calendar" -->
+                            <p src="${news.description}"><i class="fas fa-align-left"></i> Deskripsi: </p> <!-- Ikon "align-left" -->
+                            <p src="${news.author}"><i class="fas fa-user"></i> Penulis: </p> <!-- Ikon "user" -->
+                            <p src="${news.views}"><i class="fas fa-eye"></i> Views: </p> <!-- Ikon "eye" -->
+                            <a href="${news.link}" target="_blank">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('layout/footer.ejs') %>
+
+        <script src="js/berita.js"></script>
+    </div>
+</body>
+</html>

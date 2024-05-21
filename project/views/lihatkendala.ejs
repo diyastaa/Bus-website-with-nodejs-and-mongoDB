@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lihat Kendala</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      color: #1F4898;
+    }
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 12px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Daftar Kendala</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Nama Depan</th>
+        <th>Nama Belakang</th>
+        <th>Daerah</th>
+        <th>Kendala</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% kendalas.forEach(kendala => { %>
+        <tr>
+          <td><%= kendala.firstName %></td>
+          <td><%= kendala.lastName %></td>
+          <td><%= kendala.daerah %></td>
+          <td><%= kendala.kendala %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>

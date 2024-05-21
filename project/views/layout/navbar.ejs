@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Arima+Madurai" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css"> 
+<nav>
+    <div class="brand">
+        <img src="images/tjlogo.png" alt="TJ Admin">
+        <h3>TransJakarta</h3>
+    </div>
+    <div class="navigation">
+        <ul class="menu">
+            <li>
+                <a href="/index">Beranda</a>
+            </li>
+            <li class="dropdown">
+                <a href="#container-koridor">
+                  Koridor
+                  <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#peta-rute-tj">Peta Jaringan</a></li>
+                </ul>
+              </li>
+            <li>
+            <li class="dropdown">
+                <a href="#service-pages">
+                  Services
+                  <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#jenis-bus-page">Jenis Bus</a></li>
+                  <li><a href="/ruteB">Rute Busway</a></li>
+                  <li><a href="/berita">Berita</a></li>
+                </ul>
+              </li>
+            <li>
+            <li>
+                <a href="#about-pages">About</a>
+            </li>
+            <li>
+                <a href="#contact-pages">Contact</a>
+            </li>
+        </ul>
+        <div class="search-bar">
+            <input id="searchInput" type="text" placeholder="Search..." oninput="searchFunction()">
+            <button type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+            <ul id="searchDropdown" class="search-dropdown">
+                <!-- Hasil pencarian akan ditampilkan di sini -->
+            </ul>
+        </div>
+        <a href="/login" class="login-icon">
+            <i class="fas fa-user"></i>
+        </a>
+    </div>
+</nav>
+
+<!-- Contoh daftar hasil pencarian -->
+<ul id="searchResults" style="display: none;">
+<li><a href="/berita" data-description="menampilkan berita dari terbaru, terlama bahkan yang sedang trending!">berita</a></li>
+<li><a href="/" data-description="menampilkan lokasi halte, stasiun, serta jalur yang dilalui oleh bus TransJakarta">peta jaringan</a></li>
+<li><a href="/ruteB" data-description="menampilkan jenis layanan dan bus yang akan digunakan dari kota asal sampai kota tujuan">Rute Bus</a></li>
+<li><a href="/" data-description="menampilkan jenis jenis bus yang digunakan untuk melayani berbagai kebutuhan penumpang di wilayah Jakarta">jenis bus</a></li>
+<li><a href="/" data-description="menampilkan services atau layanan yang terdapat di TransJakarta">services</a></li>
+<li><a href="/" data-description="menampilkan kelebihan ataupun kekurangan dari menggunakan layanan TransJakarta">benefit</a></li>
+</ul>
+
+<script>
+    function searchFunction() {
+    var input, filter, ul, li, a, i, txtValue, found;
+    input = document.getElementById('searchInput');
+    filter = input.value.toUpperCase().trim(); // Menghapus spasi di awal dan akhir input
+    ul = document.getElementById("searchDropdown");
+
+    // Kosongkan dropdown jika input kosong
+    if (filter === '') {
+        ul.style.display = "none";
+        return;
+    }
+
+    ul.style.display = "block"; // Tampilkan dropdown saat melakukan pencarian
+    ul.innerHTML = ''; // Kosongkan isi dropdown
+
+    // Daftar hasil pencarian
+    var searchResults = document.getElementById("searchResults");
+
+    // Melakukan iterasi pada semua item daftar, menyembunyikan yang tidak cocok
+    for (i = 0; i < searchResults.children.length; i++) {
+        a = searchResults.children[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        // Menghapus spasi di awal dan akhir teks hasil pencarian
+        var searchValue = txtValue.toUpperCase().trim();
+        if (searchValue.indexOf(filter) > -1) {
+            var li = document.createElement("li");
+            li.innerHTML = "<a href='" + a.getAttribute('href') + "'>" + txtValue + "</a>";
+            if (a.getAttribute('data-description')) {
+                li.innerHTML += "<span>" + a.getAttribute('data-description') + "</span>"; // Tambahkan deskripsi jika ada
+            }
+            ul.appendChild(li);
+            found = true; // Set keadaan ditemukan menjadi true
+        }
+    }
+
+    // Jika tidak ada hasil ditemukan, tampilkan pesan "Not Found"
+    if (!found) {
+        var li = document.createElement("li");
+        li.textContent = "Not Found";
+        ul.appendChild(li);
+    }
+}
+
+// Sembunyikan dropdown saat mengklik di luar dropdown
+window.onclick = function(event) {
+    if (!event.target.matches('.search-bar')) {
+        var dropdowns = document.getElementsByClassName("search-dropdown");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
+        }
+    }
+}
+
+
+</script>
+<!-- End Navbar section -->

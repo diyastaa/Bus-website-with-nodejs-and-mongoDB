@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <!-- Tambahkan CSS kustom di sini -->
+    <link rel="stylesheet" href="/styles/tj.css">
+    <style>
+        /* Tambahkan gaya tambahan di sini jika diperlukan */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-color: #1F4898;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .logout-form {
+            text-align: right;
+            margin-top: -40px;
+            margin-right: 20px;
+        }
+
+        .logout-form button {
+            background-color: #1F4898;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-form button:hover {
+            background-color: #0E3066;
+        }
+
+        main {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+            transition: background-color 0.3s ease;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1F4898;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0E3066;
+        }
+
+        button {
+            background-color: #1F4898;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0E3066;
+        }
+
+        .add-link {
+            display: block;
+            margin-top: 20px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Rute TJ</h1>
+        <% if (isLoggedIn) { %>
+            <form class="logout-form" action="/logout" method="GET">
+                <button type="submit">Logout</button>
+            </form>
+        <% } %>
+    </header>
+    <main>
+        <label for="search">Search:</label> 
+        
+        <input type="text" id="search" onkeyup="searchTable()" placeholder="Type to search...">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>ID Rute</th>
+                    <th>ID Agency</th>
+                    <th>Kode Rute</th>
+                    <th>Rute Panjang</th>
+                    <th>Deskripsi Rute</th>
+                    <th>Tipe Rute</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% tjData.forEach(data => { %>
+                    <tr>
+                        <td><%= data.route_id %></td>
+                        <td><%= data.agency_id %></td>
+                        <td><%= data.route_short_name %></td>
+                        <td><%= data.route_long_name %></td>
+                        <td><%= data.route_desc %></td>
+                        <td><%= data.route_type %></td>
+                        <td>
+                            <!-- Edit button -->
+                            <a href="/tj/edit/<%= data._id %>">Edit</a>
+                            <!-- Delete form -->
+                            <form action="/tj/delete/<%= data._id %>" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+
+        </table>
+        <% if (isLoggedIn) { %>
+            <a href="/tj/add" class="add-link">Tambah Data TJ</a>
+        <% } %>
+    </main>
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dataTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length; j++) {
+                    var cell = td[j];
+                    if (cell) {
+                        txtValue = cell.textContent || cell.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

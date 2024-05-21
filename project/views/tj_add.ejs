@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Rute</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #1F4898;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 9px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #1F4898;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus {
+            border-color: #1F4898;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #1F4898;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0E3066;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tambah Rute</h1>
+    <form action="/tj/add" method="POST">
+        <label for="route_id">Route ID:</label>
+        <input type="text" id="route_id" name="route_id"><br>
+        <label for="agency_id">Agency ID:</label>
+        <input type="text" id="agency_id" name="agency_id"><br>
+        <label for="route_short_name">Short Name:</label>
+        <input type="text" id="route_short_name" name="route_short_name"><br>
+        <label for="route_long_name">Long Name:</label>
+        <input type="text" id="route_long_name" name="route_long_name"><br>
+        <label for="route_desc">Description:</label>
+        <textarea id="route_desc" name="route_desc"></textarea><br>
+        <label for="route_type">Route Type:</label>
+        <input type="number" id="route_type" name="route_type"><br>
+        <label for="route_color">Route Color:</label>
+        <input type="text" id="route_color" name="route_color"><br>
+        <label for="route_text_color">Text Color:</label>
+        <input type="text" id="route_text_color" name="route_text_color"><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
